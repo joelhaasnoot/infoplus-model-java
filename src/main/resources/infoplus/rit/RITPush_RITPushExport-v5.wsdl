@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2024-04-16	5	DistributieReisinformatie Levering naar SOAP endpoint -->
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ritinfo="urn:ns:cdm:reisinformatie:message:ritinfo:5" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" name="RITPushExport_InfoPlusRITInterfaceHttp_Service" targetNamespace="urn:ns:cdm:reisinformatie:message:ritinfo:5">
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xs:import namespace="urn:ns:cdm:reisinformatie:message:ritinfo:5" schemaLocation="RIT-service-definities-v5.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="PutReisInformatieBoodschapRequest">
+		<wsdl:part name="PutReisInformatieBoodschapIn" element="ritinfo:PutReisInformatieBoodschapIn"/>
+	</wsdl:message>
+	<wsdl:message name="PutReisInformatieBoodschapResponse">
+		<wsdl:part name="PutReisInformatieBoodschapOut" element="ritinfo:PutReisInformatieBoodschapOut"/>
+	</wsdl:message>
+	<wsdl:message name="ReisInformatieProductRITINFOHeaderInfo">
+		<wsdl:part name="Info" element="ritinfo:ReisInformatieProductRITINFOHeaderInfo"/>
+	</wsdl:message>
+	<wsdl:portType name="InfoPlusRITInterface">
+		<wsdl:operation name="PutReisInformatieBoodschap">
+			<wsdl:input message="ritinfo:PutReisInformatieBoodschapRequest"/>
+			<wsdl:output message="ritinfo:PutReisInformatieBoodschapResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="RITPushExport_InfoPlusRITInterfaceHttpBinding" type="ritinfo:InfoPlusRITInterface">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="PutReisInformatieBoodschap">
+			<soap:operation soapAction="urn:#PutReisInformatieBoodschap"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+				<soap:header message="ritinfo:ReisInformatieProductRITINFOHeaderInfo" part="Info" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="RITPushExport_InfoPlusRITInterfaceHttpService">
+		<wsdl:port name="RITPushExport_InfoPlusRITInterfaceHttpPort" binding="ritinfo:RITPushExport_InfoPlusRITInterfaceHttpBinding">
+			<soap:address location="http:// 172.25.226.1/rcv-ns1-01/ritinfo.asmx"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

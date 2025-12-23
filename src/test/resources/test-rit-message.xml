@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:PutReisInformatieBoodschapIn xmlns="urn:ns:cdm:reisinformatie:data:rit:5"
+                                  xmlns:ns2="urn:ns:cdm:reisinformatie:message:ritinfo:5">
+    <ReisInformatieProductRitInfo Versie="9.2" TimeStamp="2025-12-22T23:00:00.425Z" ApplicatieVersie="1.2.148">
+        <RIPAdministratie>
+            <ReisInformatieProductID>53590029920001</ReisInformatieProductID>
+            <AbonnementId>57</AbonnementId>
+            <ReisInformatieTijdstip>2025-12-25T22:59:00.000Z</ReisInformatieTijdstip>
+            <GeldigTot>2025-12-26T00:30:00.000Z</GeldigTot>
+        </RIPAdministratie>
+        <RitInfo>
+            <TreinNummer>2992</TreinNummer>
+            <TreinDatum>2025-12-25</TreinDatum>
+            <TreinSoort Code="IC">Intercity</TreinSoort>
+            <Vervoerder>NS</Vervoerder>
+            <Reserveren>N</Reserveren>
+            <Toeslag>N</Toeslag>
+            <SpeciaalKaartje>N</SpeciaalKaartje>
+            <Reisplanner>J</Reisplanner>
+            <LogischeRit>
+                <LogischeRitNummer>2992</LogischeRitNummer>
+                <LogischeRitDeel>
+                    <LogischeRitDeelNummer>2992</LogischeRitDeelNummer>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>MT</StationCode>
+                            <Type>5</Type>
+                            <KorteNaam>Maastricht</KorteNaam>
+                            <MiddelNaam>Maastricht</MiddelNaam>
+                            <LangeNaam>Maastricht</LangeNaam>
+                            <UICCode>8400424</UICCode>
+                        </Station>
+                        <StationToegankelijk>N</StationToegankelijk>
+                        <StationReisAssistentie>J</StationReisAssistentie>
+                        <TreinEindBestemming InfoStatus="Gepland">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <TreinEindBestemming InfoStatus="Actueel">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <PresentatieTreinEindBestemming>
+                            <Uitingen Taal="en">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinEindBestemming>
+                        <Stopt InfoStatus="Gepland">J</Stopt>
+                        <Stopt InfoStatus="Actueel">J</Stopt>
+                        <VertrekTijd InfoStatus="Gepland">2025-12-25T22:59:00.000Z</VertrekTijd>
+                        <VertrekTijd InfoStatus="Actueel">2025-12-25T22:59:00.000Z</VertrekTijd>
+                        <TreinVertrekSpoor InfoStatus="Gepland">
+                            <SpoorNummer>3</SpoorNummer>
+                        </TreinVertrekSpoor>
+                        <TreinVertrekSpoor InfoStatus="Actueel">
+                            <SpoorNummer>3</SpoorNummer>
+                        </TreinVertrekSpoor>
+                        <PresentatieTreinVertrekSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>3</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>3</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinVertrekSpoor>
+                        <StationnementType>X</StationnementType>
+                        <MaterieelDeel>
+                            <MaterieelDeelID>AD47</MaterieelDeelID>
+                            <MaterieelDeelSoort>VIRM</MaterieelDeelSoort>
+                            <MaterieelDeelAanduiding>4</MaterieelDeelAanduiding>
+                            <MaterieelDeelLengte>10900</MaterieelDeelLengte>
+                            <MaterieelDeelVertrekPositie>1</MaterieelDeelVertrekPositie>
+                            <MaterieelDeelVolgordeVertrek>1</MaterieelDeelVolgordeVertrek>
+                            <MaterieelDeelToegankelijk>N</MaterieelDeelToegankelijk>
+                            <MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <PresentatieMaterieelDeelEindBestemming>
+                                <Uitingen>
+                                    <Uiting>Eindhoven Centraal</Uiting>
+                                </Uitingen>
+                            </PresentatieMaterieelDeelEindBestemming>
+                            <AchterBlijvenMaterieelDeel>N</AchterBlijvenMaterieelDeel>
+                        </MaterieelDeel>
+                        <NietInstappen>N</NietInstappen>
+                        <TreinRangeertVolledigAf>N</TreinRangeertVolledigAf>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>BDE</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Bunde</KorteNaam>
+                            <MiddelNaam>Bunde</MiddelNaam>
+                            <LangeNaam>Bunde</LangeNaam>
+                            <UICCode>8400140</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>BK</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Beek-E</KorteNaam>
+                            <MiddelNaam>Beek-Elsloo</MiddelNaam>
+                            <LangeNaam>Beek-Elsloo</LangeNaam>
+                            <UICCode>8400096</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>LUT</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Geleen-Lut</KorteNaam>
+                            <MiddelNaam>Geleen-Lut.</MiddelNaam>
+                            <LangeNaam>Geleen-Lutterade</LangeNaam>
+                            <UICCode>8400248</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>STD</StationCode>
+                            <Type>5</Type>
+                            <KorteNaam>Sittard</KorteNaam>
+                            <MiddelNaam>Sittard</MiddelNaam>
+                            <LangeNaam>Sittard</LangeNaam>
+                            <UICCode>8400564</UICCode>
+                        </Station>
+                        <StationToegankelijk>N</StationToegankelijk>
+                        <StationReisAssistentie>J</StationReisAssistentie>
+                        <TreinEindBestemming InfoStatus="Gepland">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <TreinEindBestemming InfoStatus="Actueel">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <PresentatieTreinEindBestemming>
+                            <Uitingen Taal="en">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinEindBestemming>
+                        <Stopt InfoStatus="Gepland">J</Stopt>
+                        <Stopt InfoStatus="Actueel">J</Stopt>
+                        <AankomstTijd InfoStatus="Gepland">2025-12-25T23:16:00.000Z</AankomstTijd>
+                        <AankomstTijd InfoStatus="Actueel">2025-12-25T23:16:00.000Z</AankomstTijd>
+                        <TreinAankomstSpoor InfoStatus="Gepland">
+                            <SpoorNummer>2</SpoorNummer>
+                            <SpoorFase>b</SpoorFase>
+                        </TreinAankomstSpoor>
+                        <TreinAankomstSpoor InfoStatus="Actueel">
+                            <SpoorNummer>2</SpoorNummer>
+                            <SpoorFase>b</SpoorFase>
+                        </TreinAankomstSpoor>
+                        <PresentatieTreinAankomstSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>2b</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>2b</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinAankomstSpoor>
+                        <VertrekTijd InfoStatus="Gepland">2025-12-25T23:17:00.000Z</VertrekTijd>
+                        <VertrekTijd InfoStatus="Actueel">2025-12-25T23:17:00.000Z</VertrekTijd>
+                        <TreinVertrekSpoor InfoStatus="Gepland">
+                            <SpoorNummer>2</SpoorNummer>
+                            <SpoorFase>b</SpoorFase>
+                        </TreinVertrekSpoor>
+                        <TreinVertrekSpoor InfoStatus="Actueel">
+                            <SpoorNummer>2</SpoorNummer>
+                            <SpoorFase>b</SpoorFase>
+                        </TreinVertrekSpoor>
+                        <PresentatieTreinVertrekSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>2b</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>2b</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinVertrekSpoor>
+                        <StationnementType>X</StationnementType>
+                        <MaterieelDeel>
+                            <MaterieelDeelID>AD47</MaterieelDeelID>
+                            <MaterieelDeelSoort>VIRM</MaterieelDeelSoort>
+                            <MaterieelDeelAanduiding>4</MaterieelDeelAanduiding>
+                            <MaterieelDeelLengte>10900</MaterieelDeelLengte>
+                            <MaterieelDeelVertrekPositie>1</MaterieelDeelVertrekPositie>
+                            <MaterieelDeelVolgordeVertrek>1</MaterieelDeelVolgordeVertrek>
+                            <MaterieelDeelToegankelijk>N</MaterieelDeelToegankelijk>
+                            <MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <PresentatieMaterieelDeelEindBestemming>
+                                <Uitingen>
+                                    <Uiting>Eindhoven Centraal</Uiting>
+                                </Uitingen>
+                            </PresentatieMaterieelDeelEindBestemming>
+                            <AchterBlijvenMaterieelDeel>N</AchterBlijvenMaterieelDeel>
+                        </MaterieelDeel>
+                        <NietInstappen>N</NietInstappen>
+                        <TreinRangeertVolledigAf>N</TreinRangeertVolledigAf>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>SRN</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Susteren</KorteNaam>
+                            <MiddelNaam>Susteren</MiddelNaam>
+                            <LangeNaam>Susteren</LangeNaam>
+                            <UICCode>8400582</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>EC</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Echt</KorteNaam>
+                            <MiddelNaam>Echt</MiddelNaam>
+                            <LangeNaam>Echt</LangeNaam>
+                            <UICCode>8400195</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>RM</StationCode>
+                            <Type>5</Type>
+                            <KorteNaam>Roermond</KorteNaam>
+                            <MiddelNaam>Roermond</MiddelNaam>
+                            <LangeNaam>Roermond</LangeNaam>
+                            <UICCode>8400523</UICCode>
+                        </Station>
+                        <StationToegankelijk>J</StationToegankelijk>
+                        <StationReisAssistentie>J</StationReisAssistentie>
+                        <TreinEindBestemming InfoStatus="Gepland">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <TreinEindBestemming InfoStatus="Actueel">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <PresentatieTreinEindBestemming>
+                            <Uitingen Taal="en">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinEindBestemming>
+                        <Stopt InfoStatus="Gepland">J</Stopt>
+                        <Stopt InfoStatus="Actueel">J</Stopt>
+                        <AankomstTijd InfoStatus="Gepland">2025-12-25T23:30:00.000Z</AankomstTijd>
+                        <AankomstTijd InfoStatus="Actueel">2025-12-25T23:30:00.000Z</AankomstTijd>
+                        <TreinAankomstSpoor InfoStatus="Gepland">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinAankomstSpoor>
+                        <TreinAankomstSpoor InfoStatus="Actueel">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinAankomstSpoor>
+                        <PresentatieTreinAankomstSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinAankomstSpoor>
+                        <VertrekTijd InfoStatus="Gepland">2025-12-25T23:31:00.000Z</VertrekTijd>
+                        <VertrekTijd InfoStatus="Actueel">2025-12-25T23:31:00.000Z</VertrekTijd>
+                        <TreinVertrekSpoor InfoStatus="Gepland">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinVertrekSpoor>
+                        <TreinVertrekSpoor InfoStatus="Actueel">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinVertrekSpoor>
+                        <PresentatieTreinVertrekSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinVertrekSpoor>
+                        <StationnementType>X</StationnementType>
+                        <MaterieelDeel>
+                            <MaterieelDeelID>AD47</MaterieelDeelID>
+                            <MaterieelDeelSoort>VIRM</MaterieelDeelSoort>
+                            <MaterieelDeelAanduiding>4</MaterieelDeelAanduiding>
+                            <MaterieelDeelLengte>10900</MaterieelDeelLengte>
+                            <MaterieelDeelVertrekPositie>1</MaterieelDeelVertrekPositie>
+                            <MaterieelDeelVolgordeVertrek>1</MaterieelDeelVolgordeVertrek>
+                            <MaterieelDeelToegankelijk>N</MaterieelDeelToegankelijk>
+                            <MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <PresentatieMaterieelDeelEindBestemming>
+                                <Uitingen>
+                                    <Uiting>Eindhoven Centraal</Uiting>
+                                </Uitingen>
+                            </PresentatieMaterieelDeelEindBestemming>
+                            <AchterBlijvenMaterieelDeel>N</AchterBlijvenMaterieelDeel>
+                        </MaterieelDeel>
+                        <NietInstappen>N</NietInstappen>
+                        <TreinRangeertVolledigAf>N</TreinRangeertVolledigAf>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>WT</StationCode>
+                            <Type>4</Type>
+                            <KorteNaam>Weert</KorteNaam>
+                            <MiddelNaam>Weert</MiddelNaam>
+                            <LangeNaam>Weert</LangeNaam>
+                            <UICCode>8400684</UICCode>
+                        </Station>
+                        <StationToegankelijk>J</StationToegankelijk>
+                        <StationReisAssistentie>J</StationReisAssistentie>
+                        <TreinEindBestemming InfoStatus="Gepland">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <TreinEindBestemming InfoStatus="Actueel">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <PresentatieTreinEindBestemming>
+                            <Uitingen Taal="en">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinEindBestemming>
+                        <Stopt InfoStatus="Gepland">J</Stopt>
+                        <Stopt InfoStatus="Actueel">J</Stopt>
+                        <AankomstTijd InfoStatus="Gepland">2025-12-25T23:44:00.000Z</AankomstTijd>
+                        <AankomstTijd InfoStatus="Actueel">2025-12-25T23:44:00.000Z</AankomstTijd>
+                        <TreinAankomstSpoor InfoStatus="Gepland">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinAankomstSpoor>
+                        <TreinAankomstSpoor InfoStatus="Actueel">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinAankomstSpoor>
+                        <PresentatieTreinAankomstSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinAankomstSpoor>
+                        <VertrekTijd InfoStatus="Gepland">2025-12-25T23:44:00.000Z</VertrekTijd>
+                        <VertrekTijd InfoStatus="Actueel">2025-12-25T23:44:00.000Z</VertrekTijd>
+                        <TreinVertrekSpoor InfoStatus="Gepland">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinVertrekSpoor>
+                        <TreinVertrekSpoor InfoStatus="Actueel">
+                            <SpoorNummer>2</SpoorNummer>
+                        </TreinVertrekSpoor>
+                        <PresentatieTreinVertrekSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>2</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinVertrekSpoor>
+                        <StationnementType>X</StationnementType>
+                        <MaterieelDeel>
+                            <MaterieelDeelID>AD47</MaterieelDeelID>
+                            <MaterieelDeelSoort>VIRM</MaterieelDeelSoort>
+                            <MaterieelDeelAanduiding>4</MaterieelDeelAanduiding>
+                            <MaterieelDeelLengte>10900</MaterieelDeelLengte>
+                            <MaterieelDeelVertrekPositie>1</MaterieelDeelVertrekPositie>
+                            <MaterieelDeelVolgordeVertrek>1</MaterieelDeelVolgordeVertrek>
+                            <MaterieelDeelToegankelijk>N</MaterieelDeelToegankelijk>
+                            <MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <PresentatieMaterieelDeelEindBestemming>
+                                <Uitingen>
+                                    <Uiting>Eindhoven Centraal</Uiting>
+                                </Uitingen>
+                            </PresentatieMaterieelDeelEindBestemming>
+                            <AchterBlijvenMaterieelDeel>N</AchterBlijvenMaterieelDeel>
+                        </MaterieelDeel>
+                        <NietInstappen>N</NietInstappen>
+                        <TreinRangeertVolledigAf>N</TreinRangeertVolledigAf>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>MZ</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Maarheeze</KorteNaam>
+                            <MiddelNaam>Maarheeze</MiddelNaam>
+                            <LangeNaam>Maarheeze</LangeNaam>
+                            <UICCode>8400432</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>HZE</StationCode>
+                            <Type>0</Type>
+                            <KorteNaam>Heeze</KorteNaam>
+                            <MiddelNaam>Heeze</MiddelNaam>
+                            <LangeNaam>Heeze</LangeNaam>
+                            <UICCode>8400308</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>GP</StationCode>
+                            <Type>1</Type>
+                            <KorteNaam>Geldrop</KorteNaam>
+                            <MiddelNaam>Geldrop</MiddelNaam>
+                            <LangeNaam>Geldrop</LangeNaam>
+                            <UICCode>8400245</UICCode>
+                        </Station>
+                        <Stopt InfoStatus="Gepland">N</Stopt>
+                        <Stopt InfoStatus="Actueel">N</Stopt>
+                        <StationnementType>D</StationnementType>
+                    </LogischeRitDeelStation>
+                    <LogischeRitDeelStation>
+                        <Station>
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </Station>
+                        <StationToegankelijk>J</StationToegankelijk>
+                        <StationReisAssistentie>J</StationReisAssistentie>
+                        <TreinEindBestemming InfoStatus="Gepland">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <TreinEindBestemming InfoStatus="Actueel">
+                            <StationCode>EHV</StationCode>
+                            <Type>6</Type>
+                            <KorteNaam>Eindhovn C</KorteNaam>
+                            <MiddelNaam>Eindhoven C.</MiddelNaam>
+                            <LangeNaam>Eindhoven Centraal</LangeNaam>
+                            <UICCode>8400206</UICCode>
+                        </TreinEindBestemming>
+                        <PresentatieTreinEindBestemming>
+                            <Uitingen Taal="en">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>Eindhoven C.</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinEindBestemming>
+                        <Stopt InfoStatus="Gepland">J</Stopt>
+                        <Stopt InfoStatus="Actueel">J</Stopt>
+                        <AankomstTijd InfoStatus="Gepland">2025-12-26T00:00:00.000Z</AankomstTijd>
+                        <AankomstTijd InfoStatus="Actueel">2025-12-26T00:00:00.000Z</AankomstTijd>
+                        <TreinAankomstSpoor InfoStatus="Gepland">
+                            <SpoorNummer>5</SpoorNummer>
+                        </TreinAankomstSpoor>
+                        <TreinAankomstSpoor InfoStatus="Actueel">
+                            <SpoorNummer>5</SpoorNummer>
+                        </TreinAankomstSpoor>
+                        <PresentatieTreinAankomstSpoor>
+                            <Uitingen Taal="en">
+                                <Uiting>5</Uiting>
+                            </Uitingen>
+                            <Uitingen Taal="nl">
+                                <Uiting>5</Uiting>
+                            </Uitingen>
+                        </PresentatieTreinAankomstSpoor>
+                        <StationnementType>X</StationnementType>
+                        <MaterieelDeel>
+                            <MaterieelDeelID>AD47</MaterieelDeelID>
+                            <MaterieelDeelSoort>VIRM</MaterieelDeelSoort>
+                            <MaterieelDeelAanduiding>4</MaterieelDeelAanduiding>
+                            <MaterieelDeelLengte>10900</MaterieelDeelLengte>
+                            <MaterieelDeelVertrekPositie>1</MaterieelDeelVertrekPositie>
+                            <MaterieelDeelVolgordeVertrek>1</MaterieelDeelVolgordeVertrek>
+                            <MaterieelDeelToegankelijk>N</MaterieelDeelToegankelijk>
+                            <MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <StationCode>EHV</StationCode>
+                                <Type>6</Type>
+                                <KorteNaam>Eindhovn C</KorteNaam>
+                                <MiddelNaam>Eindhoven C.</MiddelNaam>
+                                <LangeNaam>Eindhoven Centraal</LangeNaam>
+                                <UICCode>8400206</UICCode>
+                            </MaterieelDeelEindBestemming>
+                            <PresentatieMaterieelDeelEindBestemming>
+                                <Uitingen>
+                                    <Uiting>Eindhoven Centraal</Uiting>
+                                </Uitingen>
+                            </PresentatieMaterieelDeelEindBestemming>
+                            <AchterBlijvenMaterieelDeel>N</AchterBlijvenMaterieelDeel>
+                        </MaterieelDeel>
+                        <NietInstappen>N</NietInstappen>
+                        <TreinRangeertVolledigAf>N</TreinRangeertVolledigAf>
+                    </LogischeRitDeelStation>
+                </LogischeRitDeel>
+            </LogischeRit>
+        </RitInfo>
+    </ReisInformatieProductRitInfo>
+</ns2:PutReisInformatieBoodschapIn>

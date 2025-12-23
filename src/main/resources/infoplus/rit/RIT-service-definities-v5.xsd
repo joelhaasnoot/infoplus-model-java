@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2024-04-16	5	DistributieReisinformatie Levering naar SOAP endpoint -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ritinfo="urn:ns:cdm:reisinformatie:message:ritinfo:5" xmlns:rit="urn:ns:cdm:reisinformatie:data:rit:5" xmlns:ns1="urn:ns:cdm:reisinformatie:message:ritinfo:5" targetNamespace="urn:ns:cdm:reisinformatie:message:ritinfo:5" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="urn:ns:cdm:reisinformatie:data:rit:5" schemaLocation="ri-cdm-rit-v5.xsd"/>
+	<xsd:element name="ReisInformatieProductRITINFOHeaderInfo">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ESBTimeStamp" type="xsd:dateTime"/>
+				<xsd:element name="TimeToLive" type="xsd:dateTime" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>Datum en tijd in seconden UTC dat het bericht geldig is. Dit is de  actuele of geplande aankomsttijd van het laatste ritstation volgens plan van de rit waarover gecommuniceerd wordt.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PutReisInformatieBoodschapIn">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="rit:ReisInformatieProductRitInfo"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PutReisInformatieBoodschapOut">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="ritinfo:ReisInformatieProductRITINFOResponse"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ReisInformatieProductRITINFOResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Success">
+					<xsd:annotation>
+						<xsd:documentation>Geeft aan of het bericht succesvol (OK) of niet succesvol (NOK) is aangekomen op het afnemende systeem</xsd:documentation>
+					</xsd:annotation>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:enumeration value="OK"/>
+							<xsd:enumeration value="NOK"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:element>
+				<xsd:element name="ErrorCode" type="xsd:string" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>In geval van een foutsituatie (Success=NOK) vult het afnemende systeem dit veld met een unieke foutcode.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>In geval van een foutsituatie (Success=NOK) vult het afnemende systeem dit veld met een relevante tekstuele omschrijving.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
