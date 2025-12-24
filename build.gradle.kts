@@ -46,7 +46,7 @@ publishing {
             from(components["java"])
 
             pom {
-                name.set("InfoPlus Model")
+                name.set("InfoPlus Model For Java")
                 description.set("Java model/classes for InfoPlus messages")
                 url.set("https://github.com/joelhaasnoot/infoplus-model-java")
 
