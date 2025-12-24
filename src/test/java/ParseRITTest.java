@@ -1,8 +1,5 @@
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
+import nl.bliksemlabs.infoplus.InfoPlusMessage;
 import ns.cdm.reisinformatie.data.rit._5.*;
-import ns.cdm.reisinformatie.message.ritinfo._5.PutReisInformatieBoodschapIn;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -14,31 +11,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParseRITTest {
 
     /**
-     * Test unmarshalling of a RIT (RitInfo) message.
+     * Test unmarshalling of a RIT (RitInfo) message using InfoPlusMessage utility.
      *
      * This test verifies that we can successfully parse a RIT message containing
      * journey information including stations, times, tracks, and rolling stock details.
      */
     @Test
-    public void testUnmarshalRITMessage() throws JAXBException {
-        // Create JAXB context for the generated classes
-        JAXBContext jaxbContext = JAXBContext.newInstance(PutReisInformatieBoodschapIn.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
+    public void testUnmarshalRITMessage() throws Exception {
         // Load the test XML file
         InputStream xmlStream = getClass().getResourceAsStream("/test-rit-message.xml");
         assertNotNull(xmlStream, "Test XML file should be found in resources");
 
-        // Attempt to unmarshal the XML
-        Object result = unmarshaller.unmarshal(xmlStream);
-
-        // Verify the result
-        assertNotNull(result, "Unmarshalling should produce a result");
-        assertTrue(result instanceof PutReisInformatieBoodschapIn,
-            "Result should be a PutReisInformatieBoodschapIn");
-
-        PutReisInformatieBoodschapIn message = (PutReisInformatieBoodschapIn) result;
-        ReisInformatieProductRitInfoType ritInfo = message.getReisInformatieProductRitInfo();
+        // Parse using InfoPlusMessage utility
+        ReisInformatieProductRitInfoType ritInfo = InfoPlusMessage.parseRIT(xmlStream);
+        assertNotNull(ritInfo, "Parsing should produce a result");
 
         // Verify basic structure
         assertNotNull(ritInfo, "ReisInformatieProductRitInfo should not be null");

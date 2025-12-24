@@ -1,8 +1,5 @@
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
+import nl.bliksemlabs.infoplus.InfoPlusMessage;
 import ndov.cdm.trein.reisinformatie.data._4.*;
-import ndov.cdm.trein.reisinformatie.messages.dynamischeaankomststaat._1.PutReisInformatieBoodschapIn;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -13,31 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParseDASTest {
 
     /**
-     * Test unmarshalling of a DAS (Dynamische Aankomst Staat) message.
+     * Test unmarshalling of a DAS (Dynamische Aankomst Staat) message using InfoPlusMessage utility.
      *
      * This test verifies that we can successfully parse a DAS message containing
      * dynamic arrival board information including train details, arrival times, tracks, and origin information.
      */
     @Test
-    public void testUnmarshalDASMessage() throws JAXBException {
-        // Create JAXB context for the generated classes
-        JAXBContext jaxbContext = JAXBContext.newInstance(PutReisInformatieBoodschapIn.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
+    public void testUnmarshalDASMessage() throws Exception {
         // Load the test XML file
         InputStream xmlStream = getClass().getResourceAsStream("/test-das-message.xml");
         assertNotNull(xmlStream, "Test XML file should be found in resources");
 
-        // Attempt to unmarshal the XML
-        Object result = unmarshaller.unmarshal(xmlStream);
-
-        // Verify the result
-        assertNotNull(result, "Unmarshalling should produce a result");
-        assertTrue(result instanceof PutReisInformatieBoodschapIn,
-            "Result should be a PutReisInformatieBoodschapIn");
-
-        PutReisInformatieBoodschapIn message = (PutReisInformatieBoodschapIn) result;
-        ReisInformatieProductDASType das = message.getReisInformatieProductDAS();
+        // Parse using InfoPlusMessage utility
+        ReisInformatieProductDASType das = InfoPlusMessage.parseDAS(xmlStream);
+        assertNotNull(das, "Parsing should produce a result");
 
         // Verify basic structure
         assertNotNull(das, "ReisInformatieProductDAS should not be null");

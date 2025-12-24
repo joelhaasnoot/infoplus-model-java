@@ -38,6 +38,13 @@ or Gradle
   }
 ```
 
+After that usage becomes trivial with a simple helper:
+```java
+ReisInformatieProductRitInfoType ritInfo = InfoplusMessage.parseRitInfo(ritInfoXmlString);
+ReisInformatieProductDVSType dvs = InfoplusMessage.parseDVS(dvsString);
+ReisInformatieProductDASType das = InfoplusMessage.parseDAS(dasString);
+```
+
 TODO
 ---
 - Verstoringsinformatie: LAB, TRB, STB, VTT, VTL, VTS etc

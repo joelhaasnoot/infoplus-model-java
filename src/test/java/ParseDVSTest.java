@@ -1,8 +1,5 @@
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
+import nl.bliksemlabs.infoplus.InfoPlusMessage;
 import ndov.cdm.trein.reisinformatie.data._4.*;
-import ndov.cdm.trein.reisinformatie.messages._5.PutReisInformatieBoodschapIn;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -14,28 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ParseDVSTest {
 
     /**
-     * Test unmarshalling of a DVS (Dynamische VertrekStaat) message.
+     * Test unmarshalling of a DVS (Dynamische VertrekStaat) message using InfoPlusMessage utility.
      */
     @Test
-    public void testUnmarshalDVSMessage() throws JAXBException {
-        // Create JAXB context for the generated classes
-        JAXBContext jaxbContext = JAXBContext.newInstance(PutReisInformatieBoodschapIn.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
+    public void testUnmarshalDVSMessage() throws Exception {
         // Load the test XML file
         InputStream xmlStream = getClass().getResourceAsStream("/test-dvs-message.xml");
         assertNotNull(xmlStream, "Test XML file should be found in resources");
 
-        // Attempt to unmarshal the XML
-        Object result = unmarshaller.unmarshal(xmlStream);
-
-        // Verify the result
-        assertNotNull(result, "Unmarshalling should produce a result");
-        assertTrue(result instanceof PutReisInformatieBoodschapIn,
-            "Result should be a PutReisInformatieBoodschapIn");
-
-        PutReisInformatieBoodschapIn message = (PutReisInformatieBoodschapIn) result;
-        ReisInformatieProductDVSType dvs = message.getReisInformatieProductDVS();
+        // Parse using InfoPlusMessage utility
+        ReisInformatieProductDVSType dvs = InfoPlusMessage.parseDVS(xmlStream);
+        assertNotNull(dvs, "Parsing should produce a result");
 
         // Verify basic structure
         assertNotNull(dvs, "ReisInformatieProductDVS should not be null");
