@@ -28,9 +28,15 @@ tasks.test {
 }
 
 xjc {
-    xsdDir.set(layout.projectDirectory.dir("src/main/resources/infoplus/rit"))
+    xsdDir.set(layout.projectDirectory.dir("src/main/resources/infoplus"))
     bindingFiles.setFrom(layout.projectDirectory.dir("src/main/resources").asFileTree.matching { include("**/*.xjb") })
-    includes.set(listOf("RITPush_RITPushExport-v5.wsdl"))
+    includes.set(
+        listOf(
+            "dvs/NDOV_Med_DVSPush_DVSPushExport-v5.0.0.wsdl",
+            "das/NDOV_Med_DASPush_DASPushExport-v1.0.0.wsdl",
+            "rit/RITPush_RITPushExport-v5.wsdl"
+        )
+    )
     options.add("-wsdl")
 }
 

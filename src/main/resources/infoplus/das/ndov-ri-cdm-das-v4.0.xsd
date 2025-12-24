@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2017-08-28	Marcel Sciarone	Levering DAS aan NDOV -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ndov:cdm:trein:reisinformatie:data:4" targetNamespace="urn:ndov:cdm:trein:reisinformatie:data:4" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="../common/ndov-ri-cdm-common-v4.0.xsd"/>
+	<xsd:element name="ReisInformatieProductDAS" type="ReisInformatieProductDASType">
+		<xsd:annotation>
+			<xsd:documentation>Een reisinformatieproduct van CRIS met als inhoud een DAS. Deze wordt door CRIS aangemaakt en uitgestuurd.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ActueleAankomstTijdenType">
+		<xsd:annotation>
+			<xsd:documentation>Het actuele overzicht van alle ritten die binnen een bepaalde tijdshorizon aankomen op een bepaald station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AankomstStation" type="StationType">
+				<xsd:annotation>
+					<xsd:documentation>Het station waarvan de actuele aankomsttijden worden gegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="AankomstInformatie" type="AankomstInformatieType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="Versie" type="Versietype" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="AankomstInformatieType">
+		<xsd:annotation>
+			<xsd:documentation>De regels van Actuele AankomstTijden bestaande uit een aantal administratieve velden plus een aantal TreinAankomst -elementen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RitId" type="RitIdType"/>
+			<xsd:element name="ReisInformatieProductID" type="ReisInformatieProductIDType"/>
+			<xsd:element name="TreinAankomst" type="TreinAankomstType"/>
+			<xsd:element name="PresentatieOpmerkingen" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="DynamischeAankomstStaatType">
+		<xsd:annotation>
+			<xsd:documentation>Het element DynamischeAankomstStaat bevat de geplande en actuele gegevens van aankomende treinen op één station op één bepaalde geldigheidsdatum.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RitId" type="RitIdType"/>
+			<xsd:element name="RitDatum" type="RitDatumType"/>
+			<xsd:element name="RitStation" type="StationType"/>
+			<xsd:element name="TreinAankomst" type="TreinAankomstType"/>
+			<xsd:element name="PresentatieOpmerkingen" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="GeefActueleAankomstTijdenFaultMessageType">
+		<xsd:sequence>
+			<xsd:element name="Foutnummer" type="FoutnummerType"/>
+			<xsd:element name="Omschrijving" type="xsd:string"/>
+			<xsd:element name="GeefActueleAankomstTijdenRequestMessage" type="GeefActueleAankomstTijdenRequestMessageType"/>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Geeft de datum en tijd weer  wanneer het antwoord is samengesteld.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="GeefActueleAankomstTijdenRequestMessageType">
+		<xsd:annotation>
+			<xsd:documentation>De vraag voor actuele aankomsttijden</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="StationCode" type="StationCodeType"/>
+			<xsd:element name="MinimumResultaten" type="xsd:positiveInteger" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan hoeveel resultaten er minimaal terugverwacht worden (deze waarde kan HorizonEinde verruimen).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MaximumResultaten" type="xsd:positiveInteger" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan hoeveel resultaten er maximaal teruggegeven mogen worden (deze waarde kan HorizonEinde beperken).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HorizonStart" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft het begin van het tijdsvenster aan waarvoor aankomende treinen worden teruggegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HorizonEnd" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft het einde van het tijdsvenster aan waarvoor aankomende treinen worden teruggegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TaalCodes" type="TaalCodesType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation> Als er het TaalCodes element ontbreekt dan wordt de Nederlandse redactie gebruikt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Aanvrager" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan wie de aanvrager is (voor statistieken).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Geeft de datum en tijd weer  wanneer deze vraag is gesteld.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="GeefActueleAankomstTijdenResponseMessageType">
+		<xsd:annotation>
+			<xsd:documentation>Dit element bevat een actueel overzicht van alle ritten die binnen een bepaalde tijdshorizon aankomen op een bepaald station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BerichtStatus" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>Status van het antwoord. 10=succesvolle afhandeling, 20=geen actuele reisinformatie beschikbaar. 30=geen reisinformatie beschikbaar.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GeefActueleAankomstTijdenRequestMessage" type="GeefActueleAankomstTijdenRequestMessageType"/>
+			<xsd:element name="ActueleAankomstTijden" type="ActueleAankomstTijdenType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Geeft de datum en tijd weer  wanneer het antwoord is samengesteld.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="ReisInformatieProductDASType">
+		<xsd:sequence>
+			<xsd:element name="RIPAdministratie" type="RIPAdministratieType"/>
+			<xsd:element name="DynamischeAankomstStaat" type="DynamischeAankomstStaatType"/>
+		</xsd:sequence>
+		<xsd:attribute name="Versie" type="DASVersietype" use="optional" default="6.1"/>
+		<xsd:attribute name="TimeStamp" type="DASAanmaaktijd" use="required"/>
+		<xsd:anyAttribute namespace="##other" processContents="skip"/>
+	</xsd:complexType>
+	<xsd:complexType name="TreinAankomstType">
+		<xsd:annotation>
+			<xsd:documentation>Het element Trein_Aankomst bevat alle informatie op Treinniveau die voor de DynamischeAankomstStaat van toepassing is. Een trein is een (geplande/uitgevoerde) vervoersbeweging over spoorse infrastructuur met spoors materieel, aangeduid met een treinnummer.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TreinNummer" type="treinnummer"/>
+			<xsd:element name="TreinNaam" type="TreinNaamType" minOccurs="0"/>
+			<xsd:element name="TreinSoort" type="TreinSoortType" minOccurs="0"/>
+			<xsd:element name="TreinStatus" type="TreinStatusType" minOccurs="0"/>
+			<xsd:element name="LijnNummer" type="LijnNummerType" minOccurs="0"/>
+			<xsd:element name="Vervoerder" type="VervoerderType" minOccurs="0"/>
+			<xsd:element name="TreinHerkomst" type="StationPlannedActueelType" minOccurs="2" maxOccurs="unbounded"/>
+			<!-- Geeft een beschrijving van de herkomst van deze trein. Voor vleugeltreinen wordt de gecombineerde herkomst gegeven. Middels het InfoStatus attribuut wordt de actualiteitsstatus weergegeven (bijv. "Actueel"). -->
+			<xsd:element name="PresentatieTreinHerkomst" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="AankomstTijd" type="AankomstOfVertrekTijdType" minOccurs="2" maxOccurs="2"/>
+			<xsd:element name="ExacteAankomstVertraging" type="ExacteVertragingType"/>
+			<xsd:element name="PresentatieAankomstVertraging" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="GedempteAankomstVertraging" type="GedempteVertragingType"/>
+			<xsd:element name="TreinAankomstSpoor" type="SpoorPlannedActueelType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="PresentatieTreinAankomstSpoor" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="VerkorteRouteHerkomst" type="VerkorteRouteHerkomstType" minOccurs="0" maxOccurs="2"/>
+			<xsd:element name="PresentatieVerkorteRouteHerkomst" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="WijzigingHerkomst" type="WijzigingHerkomstType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerkorteRouteHerkomstType">
+		<xsd:sequence>
+			<xsd:element name="Station" type="StationType" maxOccurs="4"/>
+		</xsd:sequence>
+		<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="WijzigingHerkomstType">
+		<xsd:annotation>
+			<xsd:documentation>Dit element bevat informatie over een wijziging van een trein ten opzichte van de dienstregeling gezien richting herkomst van de rit.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="WijzigingType" type="WijzigingTypeType"/>
+			<xsd:element name="WijzigingOorzaakKort" type="WijzigingOorzaakKortType" minOccurs="0"/>
+			<xsd:element name="WijzigingOorzaakLang" type="WijzigingOorzaakLangType" minOccurs="0"/>
+			<xsd:element name="WijzigingStationHerkomst" type="StationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="TVVOmschrijving" type="TVVOmschrijvingType" minOccurs="0"/>
+			<xsd:element name="PresentatieWijzigingHerkomst" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="DASAanmaaktijd">
+		<xsd:annotation>
+			<xsd:documentation>bevat de actuele tijd ten tijde van het opstellen van de DAS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="DASVersietype">
+		<xsd:annotation>
+			<xsd:documentation>xsd accepteert versie nummer in de range  6.0 - 6.99.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="6\.[0-9]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

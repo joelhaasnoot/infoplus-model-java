@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:PutReisInformatieBoodschapIn xmlns:ns1="urn:ndov:cdm:trein:reisinformatie:messages:dynamischeaankomststaat:1">
+    <ns2:ReisInformatieProductDAS Versie="6.1" TimeStamp="2025-12-23T22:59:59Z"
+                                  xmlns:ns2="urn:ndov:cdm:trein:reisinformatie:data:4">
+        <ns2:RIPAdministratie>
+            <ns2:ReisInformatieProductID>8357002889258013</ns2:ReisInformatieProductID>
+            <ns2:AbonnementId>55</ns2:AbonnementId>
+            <ns2:ReisInformatieTijdstip>2025-12-23T23:08:00Z</ns2:ReisInformatieTijdstip>
+        </ns2:RIPAdministratie>
+        <ns2:DynamischeAankomstStaat>
+            <ns2:RitId>2889</ns2:RitId>
+            <ns2:RitDatum>2025-12-23</ns2:RitDatum>
+            <ns2:RitStation>
+                <ns2:StationCode>GD</ns2:StationCode>
+                <ns2:Type>5</ns2:Type>
+                <ns2:KorteNaam>Gouda</ns2:KorteNaam>
+                <ns2:MiddelNaam>Gouda</ns2:MiddelNaam>
+                <ns2:LangeNaam>Gouda</ns2:LangeNaam>
+                <ns2:UICCode>8400258</ns2:UICCode>
+            </ns2:RitStation>
+            <ns2:TreinAankomst>
+                <ns2:TreinNummer>2889</ns2:TreinNummer>
+                <ns2:TreinSoort Code="IC">Intercity</ns2:TreinSoort>
+                <ns2:TreinStatus>0</ns2:TreinStatus>
+                <ns2:Vervoerder>NS</ns2:Vervoerder>
+                <ns2:TreinHerkomst InfoStatus="Gepland">
+                    <ns2:StationCode>RTD</ns2:StationCode>
+                    <ns2:Type>6</ns2:Type>
+                    <ns2:KorteNaam>Rotterdm C</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Rotterdam C.</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Rotterdam Centraal</ns2:LangeNaam>
+                    <ns2:UICCode>8400530</ns2:UICCode>
+                </ns2:TreinHerkomst>
+                <ns2:TreinHerkomst InfoStatus="Actueel">
+                    <ns2:StationCode>RTD</ns2:StationCode>
+                    <ns2:Type>6</ns2:Type>
+                    <ns2:KorteNaam>Rotterdm C</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Rotterdam C.</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Rotterdam Centraal</ns2:LangeNaam>
+                    <ns2:UICCode>8400530</ns2:UICCode>
+                </ns2:TreinHerkomst>
+                <ns2:PresentatieTreinHerkomst>
+                    <ns2:Uitingen Taal="en">
+                        <ns2:Uiting>Rotterdam C.</ns2:Uiting>
+                    </ns2:Uitingen>
+                    <ns2:Uitingen Taal="nl">
+                        <ns2:Uiting>Rotterdam C.</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinHerkomst>
+                <ns2:AankomstTijd InfoStatus="Gepland">2025-12-23T23:08:00Z</ns2:AankomstTijd>
+                <ns2:AankomstTijd InfoStatus="Actueel">2025-12-23T23:09:04Z</ns2:AankomstTijd>
+                <ns2:ExacteAankomstVertraging>PT1M4S</ns2:ExacteAankomstVertraging>
+                <ns2:PresentatieAankomstVertraging>
+                    <ns2:Uitingen Taal="en">
+                        <ns2:Uiting>+1 min.</ns2:Uiting>
+                    </ns2:Uitingen>
+                    <ns2:Uitingen Taal="nl">
+                        <ns2:Uiting>+1 min.</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieAankomstVertraging>
+                <ns2:GedempteAankomstVertraging>PT0S</ns2:GedempteAankomstVertraging>
+                <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                    <ns2:SpoorNummer>3</ns2:SpoorNummer>
+                </ns2:TreinAankomstSpoor>
+                <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                    <ns2:SpoorNummer>3</ns2:SpoorNummer>
+                </ns2:TreinAankomstSpoor>
+                <ns2:PresentatieTreinAankomstSpoor>
+                    <ns2:Uitingen Taal="en">
+                        <ns2:Uiting>3</ns2:Uiting>
+                    </ns2:Uitingen>
+                    <ns2:Uitingen Taal="nl">
+                        <ns2:Uiting>3</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinAankomstSpoor>
+                <ns2:VerkorteRouteHerkomst InfoStatus="Gepland">
+                    <ns2:Station>
+                        <ns2:StationCode>RTA</ns2:StationCode>
+                        <ns2:Type>4</ns2:Type>
+                        <ns2:KorteNaam>Alexander</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Alexander</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Rotterdam Alexander</ns2:LangeNaam>
+                        <ns2:UICCode>8400507</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRouteHerkomst>
+                <ns2:VerkorteRouteHerkomst InfoStatus="Actueel">
+                    <ns2:Station>
+                        <ns2:StationCode>RTA</ns2:StationCode>
+                        <ns2:Type>4</ns2:Type>
+                        <ns2:KorteNaam>Alexander</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Alexander</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Rotterdam Alexander</ns2:LangeNaam>
+                        <ns2:UICCode>8400507</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRouteHerkomst>
+                <ns2:PresentatieVerkorteRouteHerkomst>
+                    <ns2:Uitingen Taal="en">
+                        <ns2:Uiting>Alexander</ns2:Uiting>
+                    </ns2:Uitingen>
+                    <ns2:Uitingen Taal="nl">
+                        <ns2:Uiting>Alexander</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieVerkorteRouteHerkomst>
+                <ns2:WijzigingHerkomst>
+                    <ns2:WijzigingType>11</ns2:WijzigingType>
+                </ns2:WijzigingHerkomst>
+            </ns2:TreinAankomst>
+        </ns2:DynamischeAankomstStaat>
+    </ns2:ReisInformatieProductDAS>
+</ns1:PutReisInformatieBoodschapIn>

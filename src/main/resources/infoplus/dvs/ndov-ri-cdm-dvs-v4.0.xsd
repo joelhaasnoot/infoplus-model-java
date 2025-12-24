@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2013-08-14	Marcel Sciarone	RfC VHC-79 addendum verwijderen materiaal NDOV-->
+<!-- 												Uit MaterieelDeelDVSType de velden MaterieelID en MaterieelNummer verwijderd. -->
+<!-- 												Namespace nu urn:ndov:cdm:trein:reisinformatie:data:2 -->
+<!-- 2015-05-21	Marcel Sciarone	DVS: In MaterieelDeelDVSType het veld MaterieelNummer toegevoegd. -->
+<!--												DVS: TreinVertrekSpoor en TreinVleugelVertrekSpoor zijn optioneel geworden i.v.m. Trein Vervangend Vervoer (Bus) -->
+<!-- 												Namespace nu urn:ndov:cdm:trein:reisinformatie:data:3 -->
+<!-- 2015-09-07	Marcel Sciarone	UitingType bevat nu ReferentieType en ReferentieWaarde -->
+<!--												Wijziging in PresentatieElementen -->
+<!-- 												Namespace nu urn:ndov:cdm:trein:reisinformatie:data:4 -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ndov:cdm:trein:reisinformatie:data:4" targetNamespace="urn:ndov:cdm:trein:reisinformatie:data:4" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:include schemaLocation="../common/ndov-ri-cdm-common-v4.0.xsd"/>
+	<xsd:element name="ReisInformatieProductDVS" type="ReisInformatieProductDVSType">
+		<xsd:annotation>
+			<xsd:documentation>Een reisinformatieproduct van CRIS met als inhoud een DVS. Deze wordt door CRIS aangemaakt en uitgestuurd.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="ActueleVertrekTijdenType">
+		<xsd:annotation>
+			<xsd:documentation>Het actuele overzicht van alle vertrekkende ritten die binnen een bepaalde tijdshorizon vertrekken van een bepaald station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="VertrekStation" type="StationType">
+				<xsd:annotation>
+					<xsd:documentation>Het station waarvan de actuele vertrektijden worden gegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VertrekInformatie" type="VertrekInformatieType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="Versie" type="Versietype"/>
+	</xsd:complexType>
+	<xsd:complexType name="DynamischeVertrekStaatType">
+		<xsd:annotation>
+			<xsd:documentation>Het element DynamischeVertrekStaat bevat de geplande en actuele gegevens van één vertrekkende trein op één station op één bepaalde geldigheidsdatum.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RitId" type="RitIdType"/>
+			<xsd:element name="RitDatum" type="RitDatumType"/>
+			<xsd:element name="RitStation" type="StationType"/>
+			<xsd:element name="VerstoringOnderweg" type="VerstoringOnderwegType" minOccurs="0"/>
+			<xsd:element name="Trein" type="TreinType"/>
+			<xsd:element name="PresentatieOpmerkingen" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EindBestemmingPlannedActueelType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft een beschrijving van de eindbestemming van de treinvleugel. Middels het InfoStatus attribuut wordt de actualiteitsstatus weergegeven (bijv. "Actueel"). </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="StationType">
+				<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GeefActueleVertrekTijdenFaultMessageType">
+		<xsd:sequence>
+			<xsd:element name="Foutnummer" type="FoutnummerType"/>
+			<xsd:element name="Omschrijving" type="xsd:string"/>
+			<xsd:element name="GeefActueleVertrekTijdenRequestMessage" type="GeefActueleVertrekTijdenRequestMessageType"/>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Geeft de datum en tijd weer  wanneer het antwoord is samengesteld.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="GeefActueleVertrekTijdenRequestMessageType">
+		<xsd:annotation>
+			<xsd:documentation>De vraag voor actuele vertrektijden</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="StationCode" type="StationCodeType"/>
+			<xsd:element name="MinimumResultaten" type="xsd:positiveInteger" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan hoeveel resultaten er minimaal terugverwacht worden (deze waarde kan HorizonEinde verruimen).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="MaximumResultaten" type="xsd:positiveInteger" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan hoeveel resultaten er maximaal teruggegeven mogen worden (deze waarde kan HorizonEinde beperken).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HorizonStart" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft het begin van het tijdsvenster aan waarvoor vertrekkende treinen worden teruggegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="HorizonEnd" type="xsd:dateTime" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Geeft het einde van het tijdsvenster aan waarvoor vertrekkende treinen worden teruggegeven.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="TaalCodes" type="TaalCodesType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation> Als er het TaalCodes element ontbreekt dan wordt de Nederlandse redactie gebruikt.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="Aanvrager" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Geeft aan wie de aanvrager is (voor statistieken).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Geeft de datum en tijd weer  wanneer deze vraag is gesteld.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="GeefActueleVertrekTijdenResponseMessageType">
+		<xsd:annotation>
+			<xsd:documentation>Dit element bevat een actueel overzicht van alle vertrekkende ritten die binnen een bepaalde tijdshorizon vertrekken van een bepaald station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="BerichtStatus" type="xsd:int">
+				<xsd:annotation>
+					<xsd:documentation>Status van het antwoord. 10=succesvolle afhandeling, 20=geen actuele reisinformatie beschikbaar. 30=geen reisinformatie beschikbaar.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="GeefActueleVertrekTijdenRequestMessage" type="GeefActueleVertrekTijdenRequestMessageType"/>
+			<xsd:element name="ActueleVertrekTijden" type="ActueleVertrekTijdenType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Geeft de datum en tijd weer  wanneer het antwoord is samengesteld.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="InstapTipTreinSoortType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft de commerciële benaming van de alternatieve trein aan. De InstapTipTreinSoort is gecodeerd door middel van het Code attribuut. Het Code attribuut heeft maxLength=”3”. De maxLength van InstapTipTreinSoort kan niet door de XSD worden afgedwongen, omdat een beperking op een element dat tevens een attribuut heeft niet toegestaan is bij de constructie van een XSD. De stamtabel TreinSoort bevat de toegestane waarden.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="Code" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="3"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="InstapTipType">
+		<xsd:annotation>
+			<xsd:documentation>Het element InstapTip bevat instapinformatie.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="InstapTipTreinSoort" type="InstapTipTreinSoortType"/>
+			<xsd:element name="InstapTipUitstapStation" type="StationType"/>
+			<!--Station liggend op de route tussen het huidige station en de InstapTipEindBestemming.-->
+			<xsd:element name="InstapTipTreinEindBestemming" type="StationType"/>
+			<!-- Station dat volgens de actuele aankomsttijden door een andere rit met een latere actuele vertrektijd, eerder wordt bereikt.-->
+			<xsd:element name="InstapTipVertrekTijd" type="xsd:dateTime"/>
+			<!-- Eerstvolgende geplande vertrektijd, na actuele vertrektijd van de huidige rit, van een rit die volgens zijn actuele aankomsttijd eerder dan de huidige rit op de InstapTipBestemming zal aankomen. -->
+			<xsd:element name="InstapTipVertrekSpoor" type="SpoorType" maxOccurs="2"/>
+			<xsd:element name="PresentatieInstapTip" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Het actuele vertrekspoor van de alternatieve trein. -->
+	<xsd:complexType name="MaterieelDeelDVSType">
+		<xsd:annotation>
+			<xsd:documentation>Fysieke stukken materieel</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="MaterieelSoort" type="MaterieelSoortType"/>
+			<xsd:element name="MaterieelAanduiding" type="MaterieelAanduidingType"/>
+			<xsd:element name="MaterieelLengte" type="MaterieelLengteType"/>
+			<xsd:element name="MaterieelDeelVertrekPositie" type="MaterieelDeelVertrekPositieType" minOccurs="0"/>
+			<xsd:element name="MaterieelDeelVolgordeVertrek" type="MaterieelDeelVolgordeType" minOccurs="0"/>
+			<xsd:element name="MaterieelNummer" type="MaterieelNummerType" minOccurs="0"/>
+			<xsd:element name="MaterieelDeelEindBestemming" type="StationPlannedActueelType" minOccurs="2" maxOccurs="2"/>
+			<xsd:element name="PresentatieMaterieelDeelEindBestemming" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="SpoorVak" type="SpoorVakType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Wijziging" type="WijzigingType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OverstapTipType">
+		<xsd:annotation>
+			<xsd:documentation>Het element OverstapTip bevat overstapinformatie.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OverstapTipBestemming" type="StationType"/>
+			<!-- De bestemming die bereikt moet worden door in het OverstapTipOverstapStation over te stappen. -->
+			<xsd:element name="OverstapTipOverstapStation" type="StationType"/>
+			<xsd:element name="PresentatieOverstapTip" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!--Station waar overgestapt moet worden als de reiziger naar de OverstapTipBestemming moet.-->
+	<xsd:complexType name="ReisInformatieProductDVSType">
+		<xsd:sequence>
+			<xsd:element name="RIPAdministratie" type="RIPAdministratieType"/>
+			<xsd:element name="DynamischeVertrekStaat" type="DynamischeVertrekStaatType"/>
+		</xsd:sequence>
+		<xsd:attribute name="Versie" type="DVSVersieType" default="6.2"/>
+		<xsd:attribute name="TimeStamp" type="DVSAanmaaktijdType" use="required"/>
+		<xsd:anyAttribute namespace="##other" processContents="skip"/>
+	</xsd:complexType>
+	<xsd:complexType name="TreinType">
+		<xsd:annotation>
+			<xsd:documentation>Het element Trein bevat alle informatie op Treinniveau. Een trein is een (geplande/uitgevoerde) vervoersbeweging over spoorse infrastructuur met spoors materieel, aangeduid met een treinnummer.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TreinNummer" type="treinnummer"/>
+			<xsd:element name="TreinNaam" type="TreinNaamType" minOccurs="0"/>
+			<xsd:element name="TreinSoort" type="TreinSoortType" minOccurs="0"/>
+			<xsd:element name="TreinFormule" type="TreinFormuleType" minOccurs="0"/>
+			<xsd:element name="TreinStatus" type="TreinStatusType" minOccurs="0"/>
+			<xsd:element name="LijnNummer" type="LijnNummerType" minOccurs="0"/>
+			<xsd:element name="Vervoerder" type="VervoerderType" minOccurs="0"/>
+			<xsd:element name="Reserveren" type="ReserverenType"/>
+			<xsd:element name="PresentatieReserveren" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="Toeslag" type="ToeslagType"/>
+			<xsd:element name="PresentatieToeslag" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="NietInstappen" type="NietInstappenType" minOccurs="0"/>
+			<xsd:element name="PresentatieNietInstappen" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="AchterBlijvenAchtersteTreinDeel" type="AchterBlijvenAchtersteTreinDeelType"/>
+			<xsd:element name="RangeerBeweging" type="RangeerBewegingType"/>
+			<xsd:element name="SpeciaalKaartje" type="SpeciaalKaartjeType"/>
+			<xsd:element name="PresentatieSpeciaalKaartje" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="InstapTip" type="InstapTipType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="OverstapTip" type="OverstapTipType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ReisTip" type="ReisTipType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="TreinEindBestemming" type="StationPlannedActueelType" minOccurs="2" maxOccurs="unbounded"/>
+			<xsd:element name="PresentatieTreinEindBestemming" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="VertrekTijd" type="AankomstOfVertrekTijdType" minOccurs="2" maxOccurs="2"/>
+			<xsd:element name="ExacteVertrekVertraging" type="ExacteVertragingType"/>
+			<xsd:element name="PresentatieVertrekVertraging" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="GedempteVertrekVertraging" type="GedempteVertragingType"/>
+			<xsd:element name="TreinVertrekSpoor" type="SpoorPlannedActueelType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="PresentatieTreinVertrekSpoor" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="VertrekRichting" type="VertrekRichtingType"/>
+			<xsd:element name="AfstandPerronEindKopVertrekTrein" type="AfstandPerronEindKopVertrekTreinType"/>
+			<xsd:element name="VerkorteRoute" type="VerkorteRouteType" minOccurs="0" maxOccurs="2"/>
+			<xsd:element name="PresentatieVerkorteRoute" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="TreinVleugel" type="TreinVleugelType" maxOccurs="unbounded"/>
+			<xsd:element name="VertrekPositieKop" type="VertrekPositieKopType" minOccurs="0"/>
+			<xsd:element name="TreinNummer2Treinen1Fase" type="treinnummer" minOccurs="0"/>
+			<!--Het treinnummer van de trein die tegelijkertijd met de trein uit deze DVS een spoor(fase) deelt.-->
+			<xsd:element name="Wijziging" type="WijzigingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TreinVleugelType">
+		<xsd:annotation>
+			<xsd:documentation>Een TreinVleugel is een functionele opdeling van de trein, waarbij een andere route wordt gereden en een MaterieelDeel is hierbij het fysieke materieel, eventueel uniek gentificeerd door MaterieelNummer. Een MaterieelDeel, dat een deel van de route meerijdt en halverwege de rit achterblijft, behoort tot hetzelfde TreinVleugel als de MaterieelDelen, die de gehele route rijden.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TreinVleugelVertrekSpoor" type="SpoorPlannedActueelType" minOccurs="0" maxOccurs="4"/>
+			<xsd:element name="PresentatieTreinVleugelVertrekSpoor" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="TreinVleugelEindBestemming" type="EindBestemmingPlannedActueelType" minOccurs="2" maxOccurs="2"/>
+			<xsd:element name="PresentatieTreinVleugelEindBestemming" type="MeertaligeUitingenType" minOccurs="0"/>
+			<xsd:element name="StopStations" type="StopStationsType" maxOccurs="2"/>
+			<xsd:element name="Wijziging" type="WijzigingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="ReisTip" type="ReisTipType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="MaterieelDeelDVS" type="MaterieelDeelDVSType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StopStationsType">
+		<xsd:annotation>
+			<xsd:documentation>De verzameling van stations waar wordt gehalteerd.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Station" type="StationType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="VertrekInformatieType">
+		<xsd:annotation>
+			<xsd:documentation>De regels van Actuele VertrekTijden bestaande uit een aantal administratieve velden plus een aantal  Trein -elementen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="RitId" type="RitIdType"/>
+			<xsd:element name="ReisInformatieProductID" type="ReisInformatieProductIDType"/>
+			<xsd:element name="VerstoringOnderweg" type="VerstoringOnderwegType" minOccurs="0"/>
+			<xsd:element name="Trein" type="TreinType"/>
+			<xsd:element name="PresentatieOpmerkingen" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerstoringOnderwegType">
+		<xsd:annotation>
+			<xsd:documentation>Beschrijft de verstoring op de route. Alleen aanwezig indien er een verstoring is.
+				</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="VerstoringDossierNr" type="xsd:nonNegativeInteger">
+				<xsd:annotation>
+					<xsd:documentation>Uniek ID van het Dossier waar de andere gegevens betrekking op hebben. Bij meer verstoringen is dit de eerstvolgende verstoring waar de trein last van zou hebben.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="VerstoringSoort" type="VerstoringType">
+				<xsd:annotation>
+					<xsd:documentation>Geeft de soort verstoring aan, mogelijke waarden EV = Ernstige Verstoring, GV = Geplande Verstoring en ET = Evenement. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="RitStationInVerstoordBvk" type="indicatie" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>J indien het RitStation op een verstoord traject ligt (en de route van de trein minstens 2 opeenvolgende stations gemeen heeft met het verstoorde baanvak)
+									N indien de rest van de Route van de trein over het Verstoorde baanvak loopt, maar het Ritstation ligt niet op het verstoorde Baanvak.
+									Afwezig als de rest van de route van de trein niet over een verstoord baanvak loopt maar wel een WA uit een dossier aanwezig is.
+									</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerkorteRouteType">
+		<xsd:annotation>
+			<xsd:documentation>Een selectie van maximaal 4 nog resterende stations tot de logische eindbestemming.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Station" type="StationType" maxOccurs="4"/>
+		</xsd:sequence>
+		<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+	</xsd:complexType>
+	<xsd:simpleType name="MaterieelDeelVertrekPositieType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft de positie van een MaterieelDeel aan binnen een trein bij vertrek op een bepaald ritstation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SpoorVakType">
+		<xsd:annotation>
+			<xsd:documentation>Het SpoorVak element geeft met een letter in de reeks A t/m Z een vak aan op een spoor. Door middel van het Fysiek attribuut wordt onderscheid gemaakt tussen "fysieke" en "virtuele" spoorvakken. Als het Fysiek attribuut niet aanwezig is of de waarde "N" heeft is het spoorvak "virtueel".</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="DVSAanmaaktijdType">
+		<xsd:annotation>
+			<xsd:documentation>bevat de actuele tijd ten tijde van het opstellen van de DVS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="DVSVersieType">
+		<xsd:annotation>
+			<xsd:documentation>xsd accepteert versie nummer in de range  6.0 - 6.99.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="6\.[0-9]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VertrekPositieKopType">
+		<xsd:annotation>
+			<xsd:documentation>De exacte plaats in cm van de kop van de trein ten opzichte van het begin van het Perron (kant A) bij vertrek.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="VertrekRichtingType">
+		<xsd:annotation>
+			<xsd:documentation>Richting waarin een trein vertrekt ten opzichte van het perron: A of B.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="A"/>
+			<xsd:enumeration value="B"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VerstoringType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft de soort verstoring aan, mogelijke waarden EV = Ernstige Verstoring, GV = Geplande Verstoring en ET = Extra Trein. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="EV"/>
+			<xsd:enumeration value="GV"/>
+			<xsd:enumeration value="ET"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

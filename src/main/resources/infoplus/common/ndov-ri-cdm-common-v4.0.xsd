@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2013-08-14	Marcel Sciarone	RfC VHC-79 addendum verwijderen materiaal NDOV-->
+<!-- 												Namespace nu urn:ndov:cdm:trein:reisinformatie:data:2 -->
+<!-- 2015-05-21	Marcel Sciarone	DVS: In MaterieelDeelDVSType het veld MaterieelNummer toegevoegd. -->
+<!--												DVS: TreinVertrekSpoor en TreinVleugelVertrekSpoor zijn optioneel geworden i.v.m. Trein Vervangend Vervoer (Bus) -->
+<!-- 												Namespace nu urn:ndov:cdm:trein:reisinformatie:data:3 -->
+<!-- 2015-09-07	Marcel Sciarone	UitingType bevat nu ReferentiType en ReferentieWaarde -->
+<!--												PresentatieWijziging nu binnen Wijziging. -->
+<!-- 												Namespace nu urn:ndov:cdm:trein:reisinformatie:data:4 -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:ndov:cdm:trein:reisinformatie:data:4" targetNamespace="urn:ndov:cdm:trein:reisinformatie:data:4" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:complexType name="SpoorType">
+		<xsd:annotation>
+			<xsd:documentation>Het gedeelte van een perron dat aan de rails ligt, waar een trein stopt en reizigers kunnen in- en uitstappen. Het spoor datatype bevat een spoornummer en een optioneel spoorfase element.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="SpoorNummer" type="SpoorNummerType"/>
+			<xsd:element name="SpoorFase" type="SpoorFaseType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StationType">
+		<xsd:annotation>
+			<xsd:documentation>Gedeelte van de spoorweg, bestemd (en ingericht) om treinen te doen stoppen, beginnen, eindigen, inhalen of kruisen en voorzien van ten minste één wissel en tevens bestemd (en ingericht) om reizigers te laten in- of uitstappen en/of goederen aan te nemen en /of af te leveren. Het station datatype bevat elementen met informatie over een station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="StationCode" type="StationCodeType"/>
+			<xsd:element name="Type" type="TypeType"/>
+			<xsd:element name="KorteNaam" type="KorteNaamType"/>
+			<xsd:element name="MiddelNaam" type="MiddelNaamType"/>
+			<xsd:element name="LangeNaam" type="LangeNaamType"/>
+			<xsd:element name="UICCode" type="UICCodeType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SpoorPlannedActueelType">
+		<xsd:annotation>
+			<xsd:documentation>Spoor waarop een MaterieelDeel vertrekt.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="SpoorType">
+				<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AankomstOfVertrekTijdType">
+		<xsd:annotation>
+			<xsd:documentation>Het element AankomstTijd geeft een tijdstip weer, waarop een trein van een station aankomst. Het attribuut InfoStatus geeft aan of het de geplande of de actuele aankomsttijd is.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:dateTime">
+				<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="StationPlannedActueelType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft een beschrijving van het station. Middels het InfoStatus attribuut wordt de actualiteitsstatus weergegeven (bijv. "Actueel"). </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="StationType">
+				<xsd:attribute name="InfoStatus" type="infoStatus" use="required"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeertaligeUitingenType">
+		<xsd:sequence>
+			<xsd:element name="Uitingen" type="UitingenType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ReisTipType">
+		<xsd:annotation>
+			<xsd:documentation>Het element ReisTip bevat reistipinformatie. Geldt bij afwijkend stopgedrag ten opzichte van de de treinformule. Voorbeeld: "De stoptrein richting Amsterdam stopt niet in Bussum-Zuid".</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReisTipStation" type="StationType" minOccurs="0" maxOccurs="3"/>
+			<!-- documentation>Station waar een trein wel of niet stopt.-->
+			<xsd:element name="ReisTipCode" type="ReisTipCodeType"/>
+			<xsd:element name="PresentatieReisTip" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="RIPAdministratieType">
+		<xsd:annotation>
+			<xsd:documentation>De gegevens benodigd voor de identificatie van het bericht met een reisinformatieproduct</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ReisInformatieProductID" type="ReisInformatieProductIDType"/>
+			<xsd:element name="AbonnementId" type="AbonnementIdType"/>
+			<xsd:element name="ReisInformatieTijdstip" type="ReisInformatieTijdstipType"/>
+			<xsd:any namespace="##other" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TaalCodesType">
+		<xsd:sequence>
+			<xsd:element name="TaalCode" type="TaalCodeEnumType" default="nl" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="TreinSoortType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft de commerciële benaming van de soort trein aan. De maxLength van InstapTipTreinSoort kan niet door de XSD worden afgedwongen, omdat een beperking op een element dat tevens een attribuut heeft niet toegestaan is bij de constructie van een XSD. De stamtabel TreinSoort bevat de toegestane waarden.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="Code" use="required">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:maxLength value="3"/>
+							<xsd:minLength value="1"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="UitingenType">
+		<xsd:sequence>
+			<xsd:element name="Uiting" type="UitingType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="Taal" type="TaalCodeEnumType" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="UitingType">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="Prioriteit" type="xsd:string"/>
+				<xsd:attribute name="ReferentieType" type="xsd:string"/>
+				<xsd:attribute name="ReferentieWaarde" type="xsd:string"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="WijzigingType">
+		<xsd:annotation>
+			<xsd:documentation>Dit element bevat informatie over een wijziging van een trein ten opzichte van de dienstregeling richting eindbestemming van de rit.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="WijzigingType" type="WijzigingTypeType"/>
+			<xsd:element name="WijzigingOorzaakKort" type="WijzigingOorzaakKortType" minOccurs="0"/>
+			<xsd:element name="WijzigingOorzaakLang" type="WijzigingOorzaakLangType" minOccurs="0"/>
+			<xsd:element name="WijzigingStation" type="StationType" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- Het station (of stations) dat relevant is voor de wijziging. Niet bij ieder WijzigingType hoort een WijzigingStation. Als bijvoorbeeld de rit ingekort wordt dan is het WijzigingStation de actuele TreinEindBestemming. -->
+			<xsd:element name="TVVOmschrijving" type="TVVOmschrijvingType" minOccurs="0"/>
+			<xsd:element name="PresentatieWijziging" type="MeertaligeUitingenType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="indicatie">
+		<xsd:annotation>
+			<xsd:documentation>Een ja/nee indicator. Kan de waarde "J" (ja) en "N" (nee) aannemen.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="N"/>
+			<xsd:enumeration value="J"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="infoStatus">
+		<xsd:annotation>
+			<xsd:documentation>Geeft de actualiteitsstatus aan van informatie. Voorbeeld: "Actueel" </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Gepland"/>
+			<xsd:enumeration value="Actueel"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="stationCode">
+		<xsd:annotation>
+			<xsd:documentation>Unieke afkorting van een stationsnaam gebruikt om een station te identificeren. stationCode is een CRIS-specifiek datatype. stationCode is afgeleid van het string standaard datatype met restrictie: maxLength = "6". </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="treinnummer">
+		<xsd:annotation>
+			<xsd:documentation>Een unieke identificatie voor een trein op een bepaalde verkeers-/patroondag.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="versie">
+		<xsd:annotation>
+			<xsd:documentation>Versienummer.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="Aanmaaktijd">
+		<xsd:annotation>
+			<xsd:documentation>bevat de actuele tijd ten tijde van het opstellen van de bericht</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="AbonnementIdType">
+		<xsd:annotation>
+			<xsd:documentation>Uniek ID van een abonnement. Wordt toegekend door CRIS bij het afsluiten van een abonnement.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="AchterBlijvenAchtersteTreinDeelType">
+		<xsd:annotation>
+			<xsd:documentation>Indicatie of het achterste gedeelte van de trein wel (=”J”) of niet (=”N”) achterblijft.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="indicatie">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AfstandPerronEindKopVertrekTreinType">
+		<xsd:annotation>
+			<xsd:documentation>De afstand in meters vanaf het einde van het perron (ook wel met "B_Einde" aangeduid) tot aan de kop van de vertrekkende trein. Dit element krijgt default de waarde 0, omdat er op dit moment nog geen bedrijfsregels zijn om het element te maken.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ExacteVertragingType">
+		<xsd:annotation>
+			<xsd:documentation>Een aankomstvertraging is het verschil tussen het geplande en actuele aankomsttijd van een trein op een station. Deze vertraging wordt vastgelegd op de seconde nauwkeurig.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:duration"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="FoutnummerType">
+		<xsd:annotation>
+			<xsd:documentation>40: RPA niet beschikbaar</xsd:documentation>
+			<xsd:documentation>41: RPA geeft een SOAP Fault</xsd:documentation>
+			<xsd:documentation>50: Redactie niet mogelijk</xsd:documentation>
+			<xsd:documentation>51: Onbekende fout in mediation opgetreden</xsd:documentation>
+			<xsd:documentation>100: Ongeldige input</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="GedempteVertragingType">
+		<xsd:annotation>
+			<xsd:documentation>Een aankomstvertraging is het verschil tussen het geplande en actuele aankomsttijd van een trein op een station. Deze vertraging is de exacte vertraging afgerond op 5 minuten nauwkeurig.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:duration"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ISO6391LanguageCodeContentType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="nl">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">Dutch; Flemish</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="en">
+				<xsd:annotation>
+					<xsd:documentation xml:lang="en">English</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="KorteNaamType">
+		<xsd:annotation>
+			<xsd:documentation>Het element KorteNaam bevat een verkorte naam van een station. Maximale lengte is 10 karakters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LangeNaamType">
+		<xsd:annotation>
+			<xsd:documentation>Het element LangeNaam bevat de volledige naam van een station. Maximale lengte is 25 karakters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="25"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LijnNummerType">
+		<xsd:annotation>
+			<xsd:documentation>Het nummer van bijvoorbeel lightrail, metro of bus.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="9"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaterieelAanduidingType">
+		<xsd:annotation>
+			<xsd:documentation>Dit element zal gaan vervallen tijdens de XSD opschoning.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="4"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaterieelDeelIDType">
+		<xsd:annotation>
+			<xsd:documentation>Identificatie van een MaterieelDeel.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaterieelDeelVolgordeType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft de positie van een  MaterieelDeel aan binnen een trein bij aankomst op een bepaald ritstation.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaterieelLengteType">
+		<xsd:annotation>
+			<xsd:documentation>Lengte van een MaterieelDeel in centimeters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaterieelNummerType">
+		<xsd:annotation>
+			<xsd:documentation>Materieelnummer van een fysiek stuk materieel.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="17"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MaterieelSoortType">
+		<xsd:annotation>
+			<xsd:documentation>Soort materieel wat ingezet is in een bepaalde treinbeweging.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="9"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MiddelNaamType">
+		<xsd:annotation>
+			<xsd:documentation>Het element MiddelNaam bevat een gedeeltelijk ingekorte naam van een station. Maximale lengte is 16 karakters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="16"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NietInstappenType">
+		<xsd:annotation>
+			<xsd:documentation>Als er bij een treinstop op een station alleen uitgestapt mag worden, dan bevat dit element de waarde 'J'. Als er alleen ingestapt of in- en uitgestapt mag worden, dan bevat dit element de waarde 'N'. Het element in het bericht is niet aanwezig wanneer de trein niet stopt.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="J"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RangeerBewegingType">
+		<xsd:annotation>
+			<xsd:documentation>Indicatie of de activiteit wel ("J") of niet ("N") betrekking heeft op een rangeerbeweging</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="indicatie">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ReisInformatieProductIDType">
+		<xsd:annotation>
+			<xsd:documentation>Uniek ID van een bericht met een ReisInformatieProduct.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ReisInformatieTijdstipType">
+		<xsd:annotation>
+			<xsd:documentation>Het voor het ReisInformatieProduct van belang zijnde tijdstip. Met ReisInformatieTijdstip wordt bedoeld de samenstelling van kalenderdatum en de geplande vertrektijd bij een vertrekstaat, de geplande aankomsttijd bij een aankomststaat of de geplande vertrektijd van het eerste ritstation bij een RitInfo. Dit veld bevat net als de andere tijden een UTC-tijd inclusief zone indicator.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ReisTipCodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="STNS"/>
+			<xsd:enumeration value="STO"/>
+			<xsd:enumeration value="STVA"/>
+			<xsd:enumeration value="STNVA"/>
+			<xsd:enumeration value="STT"/>
+			<xsd:enumeration value="STNT"/>
+			<xsd:enumeration value="STAL"/>
+			<xsd:enumeration value="STN"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RitDatumType">
+		<xsd:annotation>
+			<xsd:documentation>Datum waarop de activiteit van de rit op het betreffende station wordt uitgevoerd.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="RitIdType">
+		<xsd:annotation>
+			<xsd:documentation>Unieke identifier voor de Rit uit de voor de reiziger bekende dienstregeling. Het type is een positiveInteger.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ReserverenType">
+		<xsd:annotation>
+			<xsd:documentation>Indicatie of er wel (=”J”) of niet (=”N”) voor deze rit een plaats moet worden besproken.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="indicatie">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SpeciaalKaartjeType">
+		<xsd:annotation>
+			<xsd:documentation>Indicatie of er wel (=”J”) of niet (=”N”) een speciaal kaartje nodig is.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="indicatie"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SpoorFaseType">
+		<xsd:annotation>
+			<xsd:documentation>Het gedeelte van een spoor dat nader aangeduid wordt met een kleine letter: a, b, c of d.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+			<xsd:pattern value="[a-d]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="SpoorNummerType">
+		<xsd:annotation>
+			<xsd:documentation>Het SpoorNummer element bevat een numerieke waarde (1 t/m 99) ter identificatie van een spoor.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:maxInclusive value="99"/>
+			<xsd:minInclusive value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StationnementTypeType">
+		<xsd:annotation>
+			<xsd:documentation>Dit element geeft het stationnementtype aan. U = alleen uitstappen, I = alleen instappen, D = doorkomst, " " = In- en uitstappen..</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:normalizedString"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="StationCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Het element StationCode bevat een unieke afkorting en identificatie van een station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="stationCode">
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TaalCodeEnumType">
+		<xsd:restriction base="ISO6391LanguageCodeContentType"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="ToeslagType">
+		<xsd:annotation>
+			<xsd:documentation>Indicatie of er wel (=”J”) of niet (=”N”) voor deze rit een extra bedrag moet worden betaald.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="indicatie">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TreinFormuleType">
+		<xsd:annotation>
+			<xsd:documentation>Een treinformule geeft aan welk gedrag een trein heeft. Bijvoorbeeld: stoptrein = 1, sneltrein=2, intercity=3, internationale trein=4, speciale trein=5 </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:nonNegativeInteger">
+			<xsd:pattern value="[0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TreinStatusType">
+		<xsd:annotation>
+			<xsd:documentation>Statusinformatie m.b.t. de trein. 0 = Onbekend, 1 = Trein nadert, 2 = Binnenkomst trein, 3 = Deuren open, 4 = Deuren dicht, 5 = Trein vertrokken.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TVVOmschrijvingType">
+		<xsd:annotation>
+			<xsd:documentation>Modaliteit van het treinvervangendvervoer.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="17"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TreinNaamType">
+		<xsd:annotation>
+			<xsd:documentation>"Roepnaam" van een internationale trein. Maximale lengte is 30 karakters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="TypeType">
+		<xsd:annotation>
+			<xsd:documentation>Het element Type geeft een type-aanduiding van een station. 0 = stoptreinstation, 1 = knooppunt stoptreinstation, 2 = Sneltreinstation, 3 = knooppunt sneltreinstation, 4 = Intercitystation, 5 = knooppunt intercitystation, 6 = Megastation, 7 = facultatief station.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="0"/>
+			<xsd:enumeration value="1"/>
+			<xsd:enumeration value="2"/>
+			<xsd:enumeration value="3"/>
+			<xsd:enumeration value="4"/>
+			<xsd:enumeration value="5"/>
+			<xsd:enumeration value="6"/>
+			<xsd:enumeration value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="UICCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Het element UICCode bevat een codering voor een station volgens UIC. Maximale lengte is 7 karakters.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="7"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VervoerderType">
+		<xsd:annotation>
+			<xsd:documentation>Organisatie die toestemming heeft om personen, goederen en/of materieel te vervoeren binnen het werkingsgebied van het RRV en daadwerkelijk vervoert.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="Versietype">
+		<xsd:annotation>
+			<xsd:documentation>xsd accepteert versie nummer in de range  0.00 - 9.99.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9]\.[0-9]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WijzigingOorzaakKortType">
+		<xsd:annotation>
+			<xsd:documentation>Korte beschrijving van de oorzaak die geleid heeft tot de wijziging.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="25"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WijzigingOorzaakLangType">
+		<xsd:annotation>
+			<xsd:documentation>Lange beschrijving van de oorzaak die geleid heeft tot de wijziging.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="WijzigingTypeType">
+		<xsd:annotation>
+			<xsd:documentation>Geeft het type wijziging aan via een code lopend van 00 tot en met 99.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="2"/>
+			<xsd:pattern value="[0-9][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
